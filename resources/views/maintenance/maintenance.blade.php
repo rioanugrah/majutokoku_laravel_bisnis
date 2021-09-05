@@ -13,6 +13,7 @@
         @slot('title') Maintenance @endslot
     @endcomponent
     @include('maintenance.modalBuat')
+    @include('maintenance.modalEdit')
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -89,6 +90,27 @@
         }
     });
 
+    function edit(id) {
+        $.ajax({
+            type: 'GET',
+            url: "{{ url('maintenance/edit') }}"+'/'+id,
+            contentType: "application/json;  charset=utf-8",
+            cache: false,
+            success: function(result){
+                // alert(result.id);
+                document.getElementById('edit_judul').innerHTML='Edit - '+result.data.title;
+                $('#edit_id').val(result.data.id);
+                $('#edit_title').val(result.data.title);
+                $('#edit_url').val(result.data.url);
+                $('#edit_deskripsi').val(result.data.deskripsi);
+                $('#edit_mulai').val(result.data.mulai);
+                $('#edit_selesai').val(result.data.sampai);
+                $('#edit_status').val(result.data.status);
+                $('#edit').modal('show');
+            }
+        })
+    }
+
     $('#upload-form').submit(function(e) {
         e.preventDefault();
         let formData = new FormData(this);
@@ -123,5 +145,104 @@
             }
         });
     });
+
+    $('#update-upload-form').submit(function(e) {
+        e.preventDefault();
+        let formData = new FormData(this);
+        $('#image-input-error').text('');
+
+        $.ajax({
+            type:'POST',
+            url: "{{ route('maintenance.update') }}",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: (result) => {
+                if(result.success != false){
+                    iziToast.success({
+                        title: result.message_title,
+                        message: result.message_content
+                    });
+                    $('#edit_foto').val('');
+                    table.ajax.reload();
+                }else{
+                    iziToast.error({
+                        title: result.success,
+                        message: result.error
+                    });
+                }
+            },
+            error: function (request, status, error) {
+                iziToast.error({
+                    title: 'Error',
+                    message: error,
+                });
+            }
+        });
+    });
+
+    function hapus(id) {
+        // $.ajax({
+        //     type:'POST',
+        //     url: "{{ route('maintenance.update') }}",
+        //     data: formData,
+        //     contentType: false,
+        //     processData: false,
+        //     success: (result) => {
+        //         if(result.success != false){
+        //             iziToast.success({
+        //                 title: result.message_title,
+        //                 message: result.message_content
+        //             });
+        //             $('#edit_foto').val('');
+        //             table.ajax.reload();
+        //         }else{
+        //             iziToast.error({
+        //                 title: result.success,
+        //                 message: result.error
+        //             });
+        //         }
+        //     },
+        //     error: function (request, status, error) {
+        //         iziToast.error({
+        //             title: 'Error',
+        //             message: error,
+        //         });
+        //     }
+        // });
+
+        $.ajax({
+            type: 'GET',
+            url: "{{ url('maintenance/delete') }}"+'/'+id,
+            contentType: "application/json;  charset=utf-8",
+            cache: false,
+            beforeSend: function() {
+                // setting a timeout
+                iziToast.destroy();
+            },
+            success: function(result){
+                // alert(result.id);
+                if(result.success != false){
+                    iziToast.success({
+                        title: result.message_title,
+                        message: result.message_content
+                    });
+                    table.ajax.reload();
+                }else{
+                    iziToast.error({
+                        title: result.success,
+                        message: result.error
+                    });
+                }
+            },
+            error: function (request, status, error) {
+                iziToast.error({
+                    title: 'Error',
+                    message: error,
+                });
+            }
+        })
+    }
+
 </script>
 @endsection

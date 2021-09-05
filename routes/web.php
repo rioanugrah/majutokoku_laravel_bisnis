@@ -78,6 +78,9 @@ Route::group(['middleware' => 'auth'], function () {
     // });
     Route::get('maintenance/maintenance', 'MaintenanceController@index_maintenance')->name('maintenance');
     Route::post('maintenance/simpan', 'MaintenanceController@simpan')->name('maintenance.simpan');
+    Route::post('maintenance/update', 'MaintenanceController@update')->name('maintenance.update');
+    Route::get('maintenance/edit/{id}', 'MaintenanceController@edit');
+    Route::get('maintenance/delete/{id}', 'MaintenanceController@delete');
     // cart
     Route::resource('cart', 'CartController');
     Route::patch('kosongkan/{id}', 'CartController@kosongkan');
