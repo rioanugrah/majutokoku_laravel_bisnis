@@ -44,50 +44,50 @@ Route::get('maintenance', 'MaintenanceController@index');
 // You can also use auth middleware to prevent unauthenticated users
 Route::group(['middleware' => 'auth'], function () {
     // Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('beranda', 'HomeController@index')->name('home');
-    Route::get('akses_pengguna', 'RoleController@index')->name('role');
-    Route::post('akses_pengguna/simpan', 'RoleController@simpan')->name('role.simpan');
-    Route::get('akses_pengguna/{id}', 'RoleController@show')->name('role.detail');
-    Route::post('akses_pengguna/update', 'RoleController@update')->name('role.update');
+    Route::get('beranda', 'HomeController@index')->name('home')->middleware('verified');
+    Route::get('akses_pengguna', 'RoleController@index')->name('role')->middleware('verified');
+    Route::post('akses_pengguna/simpan', 'RoleController@simpan')->name('role.simpan')->middleware('verified');
+    Route::get('akses_pengguna/{id}', 'RoleController@show')->name('role.detail')->middleware('verified');
+    Route::post('akses_pengguna/update', 'RoleController@update')->name('role.update')->middleware('verified');
     
-    Route::get('kategori', 'KategoriController@index')->name('kategori');
-    Route::post('kategori/simpan', 'KategoriController@create')->name('kategori.simpan');
-    Route::get('kategori/{id}', 'KategoriController@show')->name('kategori.detail');
-    Route::get('kategori/detail/{id}', 'KategoriController@showDetail')->name('kategori.showDetail');
-    Route::post('kategori/update', 'KategoriController@update')->name('kategori.update');
+    Route::get('kategori', 'KategoriController@index')->name('kategori')->middleware('verified');
+    Route::post('kategori/simpan', 'KategoriController@create')->name('kategori.simpan')->middleware('verified');
+    Route::get('kategori/{id}', 'KategoriController@show')->name('kategori.detail')->middleware('verified');
+    Route::get('kategori/detail/{id}', 'KategoriController@showDetail')->name('kategori.showDetail')->middleware('verified');
+    Route::post('kategori/update', 'KategoriController@update')->name('kategori.update')->middleware('verified');
 
-    Route::get('pengguna', 'PenggunaController@index')->name('pengguna');
-    Route::get('pengguna/{id}', 'PenggunaController@show')->name('pengguna.detail');
-    Route::post('pengguna/simpan', 'PenggunaController@simpan')->name('pengguna.simpan');
-    Route::post('pengguna/update', 'PenggunaController@update')->name('pengguna.update');
+    Route::get('pengguna', 'PenggunaController@index')->name('pengguna')->middleware('verified');
+    Route::get('pengguna/{id}', 'PenggunaController@show')->name('pengguna.detail')->middleware('verified');
+    Route::post('pengguna/simpan', 'PenggunaController@simpan')->name('pengguna.simpan')->middleware('verified');
+    Route::post('pengguna/update', 'PenggunaController@update')->name('pengguna.update')->middleware('verified');
     
-    Route::get('profile', 'ProfileController@index')->name('profile');
+    Route::get('profile', 'ProfileController@index')->name('profile')->middleware('verified');
 
-    Route::get('portal', 'PortalController@index')->name('portal');
-    Route::post('portal/simpan', 'PortalController@simpan')->name('portal.simpan');
+    Route::get('portal', 'PortalController@index')->name('portal')->middleware('verified');
+    Route::post('portal/simpan', 'PortalController@simpan')->name('portal.simpan')->middleware('verified');
     
-    Route::get('item', 'ItemController@index')->name('item');
-    Route::post('item/simpan', 'ItemController@simpan')->name('item.simpan');
-    Route::post('item/update', 'ItemController@update')->name('item.update');
-    Route::get('item/{kode_barang}', 'ItemController@barcode');
-    Route::get('item/detail/{kode_barang}', 'ItemController@show');
-    Route::get('item/edit/{kode_barang}', 'ItemController@edit');
-    Route::post('item/cetak_barcode', 'ItemController@downloadBarcode')->name('item.cetakBarcode');
+    Route::get('item', 'ItemController@index')->name('item')->middleware('verified');
+    Route::post('item/simpan', 'ItemController@simpan')->name('item.simpan')->middleware('verified');
+    Route::post('item/update', 'ItemController@update')->name('item.update')->middleware('verified');
+    Route::get('item/{kode_barang}', 'ItemController@barcode')->middleware('verified');
+    Route::get('item/detail/{kode_barang}', 'ItemController@show')->middleware('verified');
+    Route::get('item/edit/{kode_barang}', 'ItemController@edit')->middleware('verified');
+    Route::post('item/cetak_barcode', 'ItemController@downloadBarcode')->name('item.cetakBarcode')->middleware('verified');
     // Route::get('profile', function () {
     //     return view('profile.index');
     // });
-    Route::get('maintenance/maintenance', 'MaintenanceController@index_maintenance')->name('maintenance');
-    Route::post('maintenance/simpan', 'MaintenanceController@simpan')->name('maintenance.simpan');
-    Route::post('maintenance/update', 'MaintenanceController@update')->name('maintenance.update');
-    Route::get('maintenance/edit/{id}', 'MaintenanceController@edit');
-    Route::get('maintenance/delete/{id}', 'MaintenanceController@delete');
+    Route::get('maintenance/maintenance', 'MaintenanceController@index_maintenance')->name('maintenance')->middleware('verified');
+    Route::post('maintenance/simpan', 'MaintenanceController@simpan')->name('maintenance.simpan')->middleware('verified');
+    Route::post('maintenance/update', 'MaintenanceController@update')->name('maintenance.update')->middleware('verified');
+    Route::get('maintenance/edit/{id}', 'MaintenanceController@edit')->middleware('verified');
+    Route::get('maintenance/delete/{id}', 'MaintenanceController@delete')->middleware('verified');
     // cart
-    Route::resource('cart', 'CartController');
-    Route::patch('kosongkan/{id}', 'CartController@kosongkan');
+    Route::resource('cart', 'CartController')->middleware('verified');
+    Route::patch('kosongkan/{id}', 'CartController@kosongkan')->middleware('verified');
     // cart detail
-    Route::resource('cartdetail', 'CartDetailController');
+    Route::resource('cartdetail', 'CartDetailController')->middleware('verified');
 
-    Route::get('curriculum', 'CVController@index')->name('cv');
+    Route::get('curriculum', 'CVController@index')->name('cv')->middleware('verified');
     Route::get('{any}', 'QovexController@index');
 });
 
