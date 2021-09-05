@@ -13,7 +13,7 @@ class FrontendController extends Controller
     {
         $data['portal'] = Portal::all();
         $data['kategori'] = Kategori::all();
-        $maintenance = Maintenance::where('url','/')->where('status','Aktif')->first();
+        $maintenance = Maintenance::where('url','/')->first();
         
         if($maintenance->status != 'Aktif'){
             return view('frontend.index', $data);
