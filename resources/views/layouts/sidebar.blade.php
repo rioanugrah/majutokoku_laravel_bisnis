@@ -77,6 +77,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('kategori') }}">Kategori</a></li>
+                        <li><a href="{{ route('maintenance') }}">Maintenance</a></li>
                         <li><a href="{{ route('role') }}">Akses</a></li>
                         <li><a href="{{ route('pengguna') }}">Pengguna</a></li>
                     </ul>

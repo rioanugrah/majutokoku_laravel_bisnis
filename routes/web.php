@@ -38,6 +38,7 @@ Route::get('pages-comingsoon', 'QovexController@index');
 Route::post('login-status', 'QovexController@checkStatus');
 
 Route::get('/', 'FrontendController@index');
+Route::get('maintenance', 'MaintenanceController@index');
 
 
 // You can also use auth middleware to prevent unauthenticated users
@@ -75,7 +76,8 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::get('profile', function () {
     //     return view('profile.index');
     // });
-
+    Route::get('maintenance/maintenance', 'MaintenanceController@index_maintenance')->name('maintenance');
+    Route::post('maintenance/simpan', 'MaintenanceController@simpan')->name('maintenance.simpan');
     // cart
     Route::resource('cart', 'CartController');
     Route::patch('kosongkan/{id}', 'CartController@kosongkan');
