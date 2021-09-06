@@ -55,6 +55,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('kategori/{id}', 'KategoriController@show')->name('kategori.detail')->middleware('verified');
     Route::get('kategori/detail/{id}', 'KategoriController@showDetail')->name('kategori.showDetail')->middleware('verified');
     Route::post('kategori/update', 'KategoriController@update')->name('kategori.update')->middleware('verified');
+    Route::get('kategori/delete/{id}', 'KategoriController@delete')->middleware('verified');
 
     Route::get('pengguna', 'PenggunaController@index')->name('pengguna')->middleware('verified');
     Route::get('pengguna/{id}', 'PenggunaController@show')->name('pengguna.detail')->middleware('verified');
@@ -76,7 +77,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::get('profile', function () {
     //     return view('profile.index');
     // });
-    Route::get('maintenance/maintenance', 'MaintenanceController@index_maintenance')->name('maintenance')->middleware('verified');
+    Route::get('maintenance', 'MaintenanceController@index_maintenance')->name('maintenance')->middleware('verified');
     Route::post('maintenance/simpan', 'MaintenanceController@simpan')->name('maintenance.simpan')->middleware('verified');
     Route::post('maintenance/update', 'MaintenanceController@update')->name('maintenance.update')->middleware('verified');
     Route::get('maintenance/edit/{id}', 'MaintenanceController@edit')->middleware('verified');

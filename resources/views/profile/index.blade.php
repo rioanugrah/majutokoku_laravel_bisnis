@@ -180,43 +180,127 @@
                             </div>
                         </div>
                         <div class="tab-pane" id="settings" role="tabpanel">
-
-                            <div class="row mt-4">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="firstname">Nama</label>
-                                        <input type="text" class="form-control" id="firstname"
-                                            placeholder="Nama">
+                            <form action="" method="post">
+                                @csrf
+                                <div class="row mt-4">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="firstname">Nama</label>
+                                            <input type="text" class="form-control" id="firstname"
+                                                placeholder="Nama" value="{{ $user->name }}" readonly>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+    
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="userbio">Bio</label>
+                                            <textarea class="form-control" id="userbio" rows="4"
+                                                placeholder="Menulis sesuatu......">
+                                            
+                                            </textarea>
+                                        </div>
+                                    </div> <!-- end col -->
+                                </div>
 
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="userbio">Bio</label>
-                                        <textarea class="form-control" id="userbio" rows="4"
-                                            placeholder="Menulis sesuatu......"></textarea>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="tempat">Tempat Lahir</label>
+                                            <input type="text" class="form-control" id="tempat"
+                                                placeholder="Tempat Lahir" readonly>
+                                        </div>
                                     </div>
-                                </div> <!-- end col -->
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group mb-0">
-                                        <label for="useremail">Email Address</label>
-                                        <input type="email" class="form-control" id="useremail" placeholder="Email">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="tanggal lahir">Tanggal Lahir</label>
+                                            <input type="date" class="form-control" id="tanggal_lahir" readonly>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group mb-0">
-                                        <label for="userpassword">Password</label>
-                                        <input type="password" class="form-control" id="userpassword"
-                                            placeholder="Enter password">
-                                    </div>
-                                </div> <!-- end col -->
-                            </div>
 
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="jenis kelamin">Jenis Kelamin</label>
+                                            <select name="jenis_kelamin" class="form-control" id="jenis_kelamin">
+                                                <option>-- Pilih Jenis Kelamin --</option>
+                                                <option value="Laki - Laki">Laki - Laki</option>
+                                                <option value="Perempuan">Perempuan</option>
+                                            </select>
+                                            {{-- <input type="text" class="form-control" id="firstname"
+                                                placeholder="Nama" value="{{ $user->name }}" readonly> --}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="posisi">Posisi</label>
+                                            <input type="text" class="form-control" id="posisi"
+                                                placeholder="Posisi" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="pendidikan">Pendidikan</label>
+                                            <input type="text" class="form-control" id="pendidikan"
+                                                placeholder="Pendidikan" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="sertifikasi">Sertifikasi</label>
+                                            <input type="text" class="form-control" id="sertifikasi"
+                                                placeholder="Sertifikasi" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="skill">Skill</label>
+                                            <input type="text" class="form-control" id="skill"
+                                                placeholder="Skill" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="bahasa">Bahasa</label>
+                                            <input type="text" class="form-control" id="bahasa"
+                                                placeholder="Bahasa" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-0">
+                                            <label for="useremail">Email Address</label>
+                                            <input type="email" class="form-control" id="useremail" placeholder="Email" value="{{ $user->email }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-0">
+                                            <label for="userpassword">Password</label>
+                                            <input type="password" class="form-control" id="userpassword"
+                                                placeholder="Enter password">
+                                        </div>
+                                    </div> <!-- end col -->
+                                </div>
+                            </form>
 
                         </div>
                     </div>

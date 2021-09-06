@@ -8,7 +8,7 @@
                 </button>
             </div>
                 <div class="modal-body">
-                    <table class="table table-bordered dt-responsive nowrap detail-datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <table class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
                                 <th>Kategori Id</th>

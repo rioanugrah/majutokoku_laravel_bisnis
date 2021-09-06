@@ -9,7 +9,7 @@
     <meta content="Themesbrand" name="author" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ URL::asset('public/images/favicon.ico')}}">
+    <link rel="shortcut icon" href="{{ URL::asset('public/images/logo_kecil.png')}}">
     @include('layouts.head')
 </head>
 

@@ -20,6 +20,10 @@ class KategoriController extends Controller
             $data = Kategori::all();
             return DataTables::of($data)
                     ->addIndexColumn()
+                    ->addColumn('no', function($row){
+                        $row = 1;
+                        return $row++;
+                    })
                     ->addColumn('action', function($row){
                         $btn = '<div class="button-items">';
                         $btn = $btn.'<button type="button" onclick="showDetail('.$row->id.')" class="btn btn-primary waves-effect waves-light">
@@ -28,7 +32,7 @@ class KategoriController extends Controller
                         $btn = $btn.'<button type="button" onclick="edit('.$row->id.')" class="btn btn-warning waves-effect waves-light">
                                     <i class="bx bx-highlight font-size-16 align-middle mr-2"></i> Edit
                                 </button>';
-                        $btn = $btn.'<button type="button" onclick="delete('.$row->id.')" class="btn btn-danger waves-effect waves-light">
+                        $btn = $btn.'<button type="button" onclick="hapus('.$row->id.')" class="btn btn-danger waves-effect waves-light">
                                     <i class="bx bx-trash-alt font-size-16 align-middle mr-2"></i> Delete
                                 </button>';
                         $btn = $btn.'</div>';
@@ -59,13 +63,20 @@ class KategoriController extends Controller
         ];
 
         $validator = Validator::make($req->all(), $rules, $messages);
-         
-        if($validator->fails()){
-            $message_title = "Failed !";
-            $message_content = "Data Tidak Disimpan, silahkan cek kembali";
-            // $message_content = "Data Tidak Disimpan, silahkan cek kembali";
-            $message_type = "error";
-            $message_succes = false;
+
+        if ($validator->passes()) {
+            // $maintenance = Maintenance::create($input);
+            $kategori = Kategori::create([
+                'slug' => Str::slug($req->nama_kategori),
+                'nama_kategori' => $req->nama_kategori,
+            ]);
+
+           if($kategori){
+                $message_title="Berhasil !";
+                $message_content="Kategori Berhasil Dibuat";
+                $message_type="success";
+                $message_succes = true;
+            }
 
             $array_message = array(
                 'success' => $message_succes,
@@ -74,29 +85,50 @@ class KategoriController extends Controller
                 'message_type' => $message_type,
             );
             return response()->json($array_message);
-            // return redirect()->back()->withErrors($validator)->withInput($request->all());
         }
 
-        $kategori = Kategori::create([
-            'slug' => Str::slug($req->nama_kategori),
-            'nama_kategori' => $req->nama_kategori,
-        ]);
-
-        if($kategori){
-            $message_title="Berhasil !";
-            $message_content="Kategori Berhasil Disimpan";
-            $message_type="success";
-            $message_succes = true;
-        }
-
-        $array_message = array(
-            'success' => $message_succes,
-            'message_title' => $message_title,
-            'message_content' => $message_content,
-            'message_type' => $message_type,
+        return response()->json(
+            [
+                'success' => false,
+                'error' => $validator->errors()->all()
+            ]
         );
+         
+        // if($validator->fails()){
+        //     $message_title = "Failed !";
+        //     $message_content = "Data Tidak Disimpan, silahkan cek kembali";
+        //     $message_type = "error";
+        //     $message_succes = false;
 
-        return response()->json($array_message);
+        //     $array_message = array(
+        //         'success' => $message_succes,
+        //         'message_title' => $message_title,
+        //         'message_content' => $message_content,
+        //         'message_type' => $message_type,
+        //     );
+        //     return response()->json($array_message);
+        // }
+
+        // $kategori = Kategori::create([
+        //     'slug' => Str::slug($req->nama_kategori),
+        //     'nama_kategori' => $req->nama_kategori,
+        // ]);
+
+        // if($kategori){
+        //     $message_title="Berhasil !";
+        //     $message_content="Kategori Berhasil Disimpan";
+        //     $message_type="success";
+        //     $message_succes = true;
+        // }
+
+        // $array_message = array(
+        //     'success' => $message_succes,
+        //     'message_title' => $message_title,
+        //     'message_content' => $message_content,
+        //     'message_type' => $message_type,
+        // );
+
+        // return response()->json($array_message);
 
     }
 
@@ -112,13 +144,23 @@ class KategoriController extends Controller
         ];
 
         $validator = Validator::make($req->all(), $rules, $messages);
-         
-        if($validator->fails()){
-            $message_title = "Failed !";
-            $message_content = "Data Tidak Disimpan, silahkan cek kembali";
-            // $message_content = "Data Tidak Disimpan, silahkan cek kembali";
-            $message_type = "error";
-            $message_succes = false;
+
+        if ($validator->passes()) {
+
+            // $maintenance = Maintenance::create($input);
+
+            $kategoriDetail = KategoriDetail::create([
+                'kategori_id' => $req->kategori_id,
+                'slug' => Str::slug($req->nama_kategori),
+                'nama_kategori' => $req->nama_kategori,
+            ]);
+
+           if($kategoriDetail){
+                $message_title="Berhasil !";
+                $message_content="Kategori Detail Berhasil Dibuat";
+                $message_type="success";
+                $message_succes = true;
+            }
 
             $array_message = array(
                 'success' => $message_succes,
@@ -127,47 +169,81 @@ class KategoriController extends Controller
                 'message_type' => $message_type,
             );
             return response()->json($array_message);
-            // return redirect()->back()->withErrors($validator)->withInput($request->all());
         }
 
-        $kategoriDetail = KategoriDetail::create([
-            'kategori_id' => $req->kategori_id,
-            'slug' => Str::slug($req->nama_kategori),
-            'nama_kategori' => $req->nama_kategori,
-        ]);
-
-        if($kategoriDetail){
-            $message_title="Berhasil !";
-            $message_content="Sub Kategori Berhasil Disimpan";
-            $message_type="success";
-            $message_succes = true;
-        }
-
-        $array_message = array(
-            'success' => $message_succes,
-            'message_title' => $message_title,
-            'message_content' => $message_content,
-            'message_type' => $message_type,
+        return response()->json(
+            [
+                'success' => false,
+                'error' => $validator->errors()->all()
+            ]
         );
+         
+        // if($validator->fails()){
+        //     $message_title = "Failed !";
+        //     $message_content = "Data Tidak Disimpan, silahkan cek kembali";
+        //     $message_type = "error";
+        //     $message_succes = false;
 
-        return response()->json($array_message);
+        //     $array_message = array(
+        //         'success' => $message_succes,
+        //         'message_title' => $message_title,
+        //         'message_content' => $message_content,
+        //         'message_type' => $message_type,
+        //     );
+        //     return response()->json($array_message);
+        // }
+
+        // $kategoriDetail = KategoriDetail::create([
+        //     'kategori_id' => $req->kategori_id,
+        //     'slug' => Str::slug($req->nama_kategori),
+        //     'nama_kategori' => $req->nama_kategori,
+        // ]);
+
+        // if($kategoriDetail){
+        //     $message_title="Berhasil !";
+        //     $message_content="Sub Kategori Berhasil Disimpan";
+        //     $message_type="success";
+        //     $message_succes = true;
+        // }
+
+        // $array_message = array(
+        //     'success' => $message_succes,
+        //     'message_title' => $message_title,
+        //     'message_content' => $message_content,
+        //     'message_type' => $message_type,
+        // );
+
+        // return response()->json($array_message);
 
     }
 
-    public function show(Request $request, $id)
+    public function show($id)
     {
-        try {
-            $kategoris = Kategori::find($id);
+        // try {
+        //     $kategoris = Kategori::find($id);
 
-            return response()->json([
-                'status' => true,
-                'data' => $kategoris
-            ], 200);
-        } catch (\Throwable $th) {
+        //     return response()->json([
+        //         'status' => true,
+        //         'data' => $kategoris
+        //     ], 200);
+        // } catch (\Throwable $th) {
+        //     return response()->json([
+        //         'status' => false
+        //     ], 401);
+        // }
+
+        $kategoris = Kategori::find($id);
+
+        if(empty($kategoris)){
             return response()->json([
                 'status' => false
-            ], 401);
+            ]);
         }
+
+        return response()->json([
+            'status' => true,
+            'data' => $kategoris
+        ]);
     }
 
     public function showDetail(Request $request, $id)
@@ -218,20 +294,34 @@ class KategoriController extends Controller
 
     public function delete($id)
     {
-        try {
-            $kategoris = Kategori::find($id)->delete();
-            return redirect()->back()->with('message', 'Data Berhasil Hapus');
-            // return response()->json([
-            //     'status' => true,
-            //     'message' => 'Data Berhasil Hapus'
-            // ], 200);
-        } catch (\Throwable $th) {
-            return redirect()->back()->with('message', 'Data Gagal Hapus');
-            // return response()->json([
-            //     'status' => false,
-            //     'message' => 'Data Gagal Hapus'
-            // ], 401);
+        $kategoris = Kategori::find($id);
+        $kategori_details = KategoriDetail::where('kategori_id', $id)->first();
+
+        if(!empty($kategoris)){
+
+            $kategoris->delete();
+            $kategori_details->delete();
+
+            $message_title="Berhasil !";
+            $message_content="Kategori Berhasil Dihapus";
+            $message_type="success";
+            $message_succes = true;
+
+            $array_message = array(
+                'success' => $message_succes,
+                'message_title' => $message_title,
+                'message_content' => $message_content,
+                'message_type' => $message_type,
+            );
+            return response()->json($array_message);
         }
+
+        return response()->json(
+            [
+                'success' => false,
+                'error' => 'Data Tidak Berhasil Dihapus'
+            ]
+        );
     }
 
     public function kategoriDetailIndex($slug)
@@ -305,4 +395,5 @@ class KategoriController extends Controller
             return redirect()->back()->with('message', 'Data Gagal Hapus');
         }
     }
+
 }

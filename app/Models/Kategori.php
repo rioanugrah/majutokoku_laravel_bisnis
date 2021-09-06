@@ -14,6 +14,7 @@ class Kategori extends Model
     protected $dates = ['deleted_at'];
 
     public $fillable = [
+        'id',
         'slug',
         'nama_kategori',
     ];

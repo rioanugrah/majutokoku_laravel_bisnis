@@ -38,12 +38,14 @@ class PenggunaController extends Controller
                         $btn = $btn.'<button type="button" onclick="show('.$row->id.')" class="btn btn-success waves-effect waves-light">
                                     <i class="mdi mdi-eye-circle font-size-16 align-middle mr-2"></i> Show
                                 </button>';
-                        $btn = $btn.'<button type="button" onclick="edit('.$row->id.')" class="btn btn-warning waves-effect waves-light">
-                                    <i class="bx bx-highlight font-size-16 align-middle mr-2"></i> Edit
-                                </button>';
-                        $btn = $btn.'<button type="button" onclick="delete('.$row->id.')" class="btn btn-danger waves-effect waves-light">
-                                    <i class="bx bx-trash-alt font-size-16 align-middle mr-2"></i> Delete
-                                </button>';
+                                if($row->role != 1){
+                                    $btn = $btn.'<button type="button" onclick="edit('.$row->id.')" class="btn btn-warning waves-effect waves-light">
+                                                <i class="bx bx-highlight font-size-16 align-middle mr-2"></i> Edit
+                                            </button>';
+                                    $btn = $btn.'<button type="button" onclick="delete('.$row->id.')" class="btn btn-danger waves-effect waves-light">
+                                                <i class="bx bx-trash-alt font-size-16 align-middle mr-2"></i> Delete
+                                            </button>';
+                                }
                         $btn = $btn.'</div>';
                         //    $btn = '<button onclick="show('.$row->id.')" class="btn btn-warning dim"><i class="fa fa-edit"></i></button>';
                         //    $btn = $btn.'<button class="btn btn-danger dim" onclick="hapus('.$row->id.')"><i class="fa fa-trash"></i></button>';

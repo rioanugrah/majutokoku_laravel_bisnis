@@ -19,6 +19,9 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
+                <div class="card-header pull-right">
+                    <button class="btn btn-success" onclick="buat()">Tambah</button>
+                </div>
                 <div class="card-body">
                     <table class="table table-bordered dt-responsive nowrap datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
@@ -55,7 +58,7 @@
             serverSide: true,
             ajax: "{{ route('kategori') }}",
             columns: [
-                {data: 'id', name: 'id'},
+                {data: 'no', name: 'no'},
                 {data: 'nama_kategori', name: 'nama_kategori'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
@@ -75,6 +78,10 @@
                 e.preventDefault();
             };
         });
+
+        function buat() {
+            $('#buat').modal('show');
+        }
 
         function simpan() {
             var frm = $('#data_simpan');
@@ -104,7 +111,7 @@
         function show(id) {
             $.ajax({
                 type: 'GET',
-                url: "{{ url('akses_pengguna') }}"+'/'+id,
+                url: "{{ url('kategori') }}"+'/'+id,
                 contentType: "application/json;  charset=utf-8",
                 cache: false,
                 success: function(result){
@@ -141,9 +148,10 @@
         }
 
         function edit(id) {
+            // alert(id);
             $.ajax({
                 type: 'GET',
-                url: "{{ url('akses_pengguna') }}"+'/'+id,
+                url: "{{ url('kategori') }}"+'/'+id,
                 contentType: "application/json;  charset=utf-8",
                 cache: false,
                 success: function(result){
@@ -176,6 +184,23 @@
                         title: 'Error',
                         message: error,
                     });
+                }
+            })
+        }
+
+        function hapus(id) {
+            // alert(id);
+            $.ajax({
+                type: 'GET',
+                url: "{{ url('kategori/delete') }}"+'/'+id,
+                contentType: "application/json;  charset=utf-8",
+                cache: false,
+                success: function(result){
+                    iziToast.success({
+                        title: result.message_title,
+                        message: result.message_content
+                    });
+                    table.ajax.reload();
                 }
             })
         }
