@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Item;
 use App\Models\Kategori;
 use DB;
@@ -280,7 +281,10 @@ class ItemController extends Controller
         if ($validator->passes()) {
             $input = $request->all();
             $input['edit_foto'] = time().'.'.$request->edit_foto->getClientOriginalExtension();
-            $request->edit_foto->move(public_path('produk'), $input['edit_foto']);
+            // $request->edit_foto->move(public_path('produk'), $input['edit_foto']);
+            // $path = Storage::putFileAs('produk',$input['edit_foto']);
+            $request->edit_foto->storeAs('produk', $input['edit_foto']);
+            // $request->edit_foto->move(public_path('produk'), $input['edit_foto']);
         //    $item = Item::create($input);
             $item = Item::where('kode_barang',$input['edit_kode_barang'])->update([
                'nama_barang' => $input['edit_nama_barang'],
