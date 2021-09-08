@@ -1,101 +1,173 @@
-@extends('layouts.master-without-nav')
+{{-- @extends('layouts.master-without-nav') --}}
+@extends('layouts.authentication.app')
 
-@section('title') Register @endsection
+@section('title') Pendaftaran Akun @endsection
 
 @section('body')
 
-<body>
-    @endsection
-
-    @section('content')
-
-    <div class="home-btn d-none d-sm-block">
-        <a href="index" class="text-dark"><i class="fas fa-home h2"></i></a>
-    </div>
-    <div class="account-pages my-5 pt-sm-5">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6 col-xl-5">
-                    <div class="card overflow-hidden">
-                        <div class="bg-login text-center">
-                            <div class="bg-login-overlay"></div>
-                            <div class="position-relative">
-                                <h5 class="text-white font-size-20">Free {{ __('Register') }}</h5>
-                                <p class="text-white-50 mb-0">Get your free Qovex account now</p>
-                                <a href="index" class="logo logo-admin mt-4">
-                                    <img src="/images/logo-sm-dark.png" alt="" height="30">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="card-body pt-5">
-
-                            <div class="p-2">
-                                <form method="POST" action="{{ route('register') }}">
-                                    @csrf
-                                    <div class="form-group">
-                                        <label for="useremail">{{ __('E-Mail Address') }}</label>
-                                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" id="useremail" placeholder="Enter email" autocomplete="email">
-                                        @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="name">{{ __('Name') }}</label>
-                                        <input type="text" name="name" value="{{ old('name') }}" required autocomplete="name" class="form-control @error('name') is-invalid @enderror" autofocus id="name" placeholder="Enter name">
-                                        @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="userpassword">{{ __('Password') }}</label>
-                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" id="userpassword" placeholder="Enter password">
-                                        @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="userpassword">{{ __('Confirm Password') }}</label>
-                                        <input type="password" name="password_confirmation" class="form-control" id="userconfirmpassword" placeholder="Confirm password">
-                                    </div>
-
-                                    <div class="mt-4">
-                                        <button class="btn btn-primary btn-block waves-effect waves-light" id="register" type="submit"> {{ __('Register') }}</button>
-                                    </div>
-
-                                    <div class="mt-4 text-center">
-                                        <p class="mb-0">By registering you agree to the Skote <a href="#" class="text-primary">Terms of Use</a></p>
-                                    </div>
-                                </form>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="mt-5 text-center">
-                        <p>Already have an account ? <a href="login" class="font-weight-medium text-primary"> Login</a> </p>
-                        <p>© <script> document.write(new Date().getFullYear()) </script> Qovex. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
-                    </div>
-
+<div class="container-fluid">
+    <div class="row row-height">
+        <div class="col-xl-4 col-lg-4 content-left">
+            <div class="content-left-wrapper">
+                <a href="{{ url('login') }}" id="logo"><img src="{{ asset('images/logo_white_square.png') }}" alt="" width="45" height="45"></a>
+                <div id="social">
+                    <ul>
+                        <li><a href="#0"><i class="icon-facebook"></i></a></li>
+                        <li><a href="#0"><i class="icon-twitter"></i></a></li>
+                        <li><a href="#0"><i class="icon-google"></i></a></li>
+                        <li><a href="#0"><i class="icon-linkedin"></i></a></li>
+                    </ul>
                 </div>
+                <!-- /social -->
+                <div>
+                    <figure><img src="{{ asset('login_new/img/info_graphic_1.svg') }}" alt="" class="img-fluid" width="270" height="270"></figure>
+                    <h2>Pendaftaran Akun</h2>
+                    {{-- <p>Tation argumentum et usu, dicit viderer evertitur te has. Eu dictas concludaturque usu, facete detracto patrioque an per, lucilius pertinacia eu vel.</p>
+                    <a href="#0" class="btn_1 rounded yellow">Purchase this template</a>
+                    <a href="#start" class="btn_1 rounded mobile_btn yellow">Start Now!</a> --}}
+                </div>
+                <div class="copy">© {{ date('Y') }} Majutokoku</div>
             </div>
+            <!-- /content-left-wrapper -->
         </div>
+        
+        <!-- /content-left -->
+        <div class="col-xl-8 col-lg-8 content-right" id="start">
+            <div id="wizard_container">
+                <div id="top-wizard">
+                    <span id="location"></span>
+                    <div id="progressbar"></div>
+                </div>
+                <!-- /top-wizard -->
+                <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input id="website" type="text" value="">
+                    <!-- Leave for security protection, read docs for details -->
+                    <div id="middle-wizard">
+                        <div class="step">
+                            <h2 class="section_title">Pendaftaran</h2>
+                            <h3 class="main_question">Akun</h3>
+                            <div class="form-group add_top_30">
+                                <label for="name">Nama Lengkap</label>
+                                <input type="text" name="name" id="name" class="form-control required" onchange="getVals(this, 'name_field');">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" name="email" id="email" class="form-control required" onchange="getVals(this, 'email_field');">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" name="password" id="password" class="form-control required">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm_password">Konfirmasi Password</label>
+                                <input type="password" name="password_confirmation" id="confirm_password" class="form-control required">
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <h2 class="section_title">Data Pribadi</h2>
+                            <h3 class="main_question">Isi data diri dengan benar</h3>
+                            <div class="form-group">
+                                <label for="tempat_lahir">Tempat Lahir</label>
+                                <input type="text" name="tempat_lahir" id="tempat_lahir" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="tanggal_lahir">Tanggal Lahir</label>
+                                <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="jenis_kelamin">Jenis Kelamin</label>
+                                <div class="form-group">
+                                    <label class="container_radio version_2">Laki - Laki
+                                        <input type="radio" name="jenis_kelamin" value="Laki - Laki" class="">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="container_radio version_2">Perempuan
+                                        <input type="radio" name="jenis_kelamin" value="Perempuan" class="">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <h2 class="section_title">Data Lainnya</h2>
+                                <h3 class="main_question">Isi data diri dengan benar</h3>
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label for="deskripsi">Deskripsi Anda</label>
+                                        <textarea name="bio" id="deskripsi" class="form-control" cols="30" rows="10"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pendidikan">Pendidikan Terakhir</label>
+                                        <input type="text" name="pendidikan" id="pendidikan" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="sertifikasi">Sertifikasi</label>
+                                        <input type="text" name="sertifikasi" id="sertifikasi" class="form-control">
+                                        <small>* Inputan bisa dikosongkan bila belum mempunyai </small>
+                                    </div>
+                                </div>
+                        </div>
+
+                        <div class="step">
+                            <h2 class="section_title">Kemampuan Lainnya</h2>
+                                <h3 class="main_question">Isi data diri dengan benar</h3>
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label for="skill">Skill Anda</label>
+                                        <textarea name="skill" id="skill" class="form-control" cols="30" rows="10"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="bahasa">Bahasa</label>
+                                        <input type="text" name="bahasa" id="bahasa" class="form-control">
+                                    </div>
+                                </div>
+                        </div>
+
+                        <div class="submit step" id="end">
+                            <div class="summary">
+                                <div class="wrapper">
+                                    <h3>Terima kasih atas waktunya<br><span id="name_field"></span>!</h3>
+                                    <p>Kami akan menghubungi Anda segera di alamat email berikut <strong id="email_field"></strong></p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="form-group terms">
+                                        <label class="container_check">Harap setujui Syarat <a href="#" data-toggle="modal" data-target="#terms-txt">dan ketentuan kami</a> sebelum Kirim
+                                            <input type="checkbox" value="Yes" class="required">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /middle-wizard -->
+                    <div id="bottom-wizard">
+                        <button type="button" name="backward" class="backward">Prev</button>
+                        <button type="button" name="forward" class="forward">Next</button>
+                        <button type="submit" name="process" class="submit">Submit</button>
+                    </div>
+                    <!-- /bottom-wizard -->
+                </form>
+            </div>
+            <!-- /Wizard container -->
+        </div>
+        <!-- /content-right-->
     </div>
+    <!-- /row-->
+</div>
+<!-- /container-fluid -->
 
-    <!-- JAVASCRIPT -->
-    <script src="{{ URL::asset('libs/jquery/jquery.min.js')}}"></script>
-    <script src="{{ URL::asset('libs/bootstrap/bootstrap.min.js')}}"></script>
-    <script src="{{ URL::asset('libs/metismenu/metismenu.min.js')}}"></script>
-    <script src="{{ URL::asset('libs/simplebar/simplebar.min.js')}}"></script>
-    <script src="{{ URL::asset('libs/node-waves/node-waves.min.js')}}"></script>
+<div class="cd-overlay-nav">
+    <span></span>
+</div>
+<!-- /cd-overlay-nav -->
 
-    <script src="{{ URL::asset('js/app.min.js')}}"></script>
-
-    @endsection
+<div class="cd-overlay-content">
+    <span></span>
+</div>
+<!-- /cd-overlay-content -->
+@endsection

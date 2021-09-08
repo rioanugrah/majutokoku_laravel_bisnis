@@ -24,18 +24,18 @@
 
                 <div class="dropdown d-none d-sm-inline-block">
                     <button type="button" class="btn header-item waves-effect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="" src="public/images/flags/us.jpg" alt="Header Language" height="16">
+                        <img class="" src="{{ asset('images/flags/us.jpg') }}" alt="Header Language" height="16">
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
 
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <img src="public/images/flags/indonesia.png" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Indonesia</span>
+                            <img src="{{ asset('images/flags/indonesia.png') }}" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Indonesia</span>
                         </a>
 
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <img src="public/images/flags/us.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">English</span>
+                            <img src="{{ asset('images/flags/us.jpg') }}" alt="user-image" class="mr-1" height="12"> <span class="align-middle">English</span>
                         </a>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                             </a>
                             <a href="" class="text-reset notification-item">
                                 <div class="media">
-                                    <img src="public/images/users/avatar-3.jpg" class="mr-3 rounded-circle avatar-xs" alt="user-pic">
+                                    <img src="{{ asset('images/users/avatar-3.jpg') }}" class="mr-3 rounded-circle avatar-xs" alt="user-pic">
                                     <div class="media-body">
                                         <h6 class="mt-0 mb-1">James Lemire</h6>
                                         <div class="font-size-12 text-muted">
@@ -110,7 +110,7 @@
 
                             <a href="" class="text-reset notification-item">
                                 <div class="media">
-                                    <img src="public/images/users/avatar-4.jpg" class="mr-3 rounded-circle avatar-xs" alt="user-pic">
+                                    <img src="{{ asset('images/users/avatar-4.jpg') }}" class="mr-3 rounded-circle avatar-xs" alt="user-pic">
                                     <div class="media-body">
                                         <h6 class="mt-0 mb-1">Salena Layfield</h6>
                                         <div class="font-size-12 text-muted">
@@ -131,7 +131,7 @@
 
                 <div class="dropdown d-inline-block">
                     <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="rounded-circle header-profile-user" src="public/images/users/avatar-2.jpg" alt="Header Avatar">
+                        <img class="rounded-circle header-profile-user" src="{{ asset('images/users/avatar-2.jpg') }}" alt="Header Avatar">
                         <span class="d-none d-xl-inline-block ml-1">{{ auth()->user()->name }}</span>
                         <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                     </button>
@@ -190,7 +190,7 @@
                             </a>
                             <a href="" class="text-reset notification-item">
                                 <div class="media">
-                                    <img src="public/images/users/avatar-3.jpg" class="mr-3 rounded-circle avatar-xs" alt="user-pic">
+                                    <img src="{{ asset('images/users/avatar-3.jpg') }}" class="mr-3 rounded-circle avatar-xs" alt="user-pic">
                                     <div class="media-body">
                                         <h6 class="mt-0 mb-1">James Lemire</h6>
                                         <div class="font-size-12 text-muted">
@@ -219,7 +219,7 @@
 
                             <a href="" class="text-reset notification-item">
                                 <div class="media">
-                                    <img src="public/images/users/avatar-4.jpg" class="mr-3 rounded-circle avatar-xs" alt="user-pic">
+                                    <img src="{{ asset('images/users/avatar-4.jpg') }}" class="mr-3 rounded-circle avatar-xs" alt="user-pic">
                                     <div class="media-body">
                                         <h6 class="mt-0 mb-1">Salena Layfield</h6>
                                         <div class="font-size-12 text-muted">
@@ -250,19 +250,19 @@
                 <div class="navbar-brand-box">
                     <a href="index" class="logo logo-dark">
                         <span class="logo-sm">
-                            <img src="{{ url('public/images/logo_white_square.png') }}" alt="" height="20">
+                            <img src="{{ asset('images/logo_white_square.png') }}" alt="" height="20">
                         </span>
                         <span class="logo-lg">
-                            <img src="public/images/logo-dark.png" alt="" height="17">
+                            <img src="{{ asset('images/logo-dark.png') }}" alt="" height="17">
                         </span>
                     </a>
 
                     <a href="index" class="logo logo-light">
                         <span class="logo-sm">
-                            <img src="{{ url('public/images/logo_white_square.png') }}" alt="" height="20">
+                            <img src="{{ asset('images/logo_white_square.png') }}" alt="" height="20">
                         </span>
                         <span class="logo-lg">
-                            <img src="public/images/logo_white.png" alt="" height="40">
+                            <img src="{{ asset('images/logo_white.png') }}" alt="" height="40">
                         </span>
                     </a>
                 </div>
@@ -377,19 +377,19 @@
                                             <div class="row no-gutters">
                                                 <div class="col">
                                                     <a class="dropdown-icon-item" href="#">
-                                                        <img src="public/images/brands/github.png" alt="Github">
+                                                        <img src="{{ asset('images/brands/github.png') }}" alt="Github">
                                                         <span>GitHub</span>
                                                     </a>
                                                 </div>
                                                 <div class="col">
                                                     <a class="dropdown-icon-item" href="#">
-                                                        <img src="public/images/brands/bitbucket.png" alt="bitbucket">
+                                                        <img src="{{ asset('images/brands/bitbucket.png') }}" alt="bitbucket">
                                                         <span>Bitbucket</span>
                                                     </a>
                                                 </div>
                                                 <div class="col">
                                                     <a class="dropdown-icon-item" href="#">
-                                                        <img src="public/images/brands/dribbble.png" alt="dribbble">
+                                                        <img src="{{ asset('images/brands/dribbble.png') }}" alt="dribbble">
                                                         <span>Dribbble</span>
                                                     </a>
                                                 </div>
@@ -398,19 +398,19 @@
                                             <div class="row no-gutters">
                                                 <div class="col">
                                                     <a class="dropdown-icon-item" href="#">
-                                                        <img src="public/images/brands/dropbox.png" alt="dropbox">
+                                                        <img src="{{ asset('images/brands/dropbox.png') }}" alt="dropbox">
                                                         <span>Dropbox</span>
                                                     </a>
                                                 </div>
                                                 <div class="col">
                                                     <a class="dropdown-icon-item" href="#">
-                                                        <img src="public/images/brands/mail_chimp.png" alt="mail_chimp">
+                                                        <img src="{{ asset('images/brands/mail_chimp.png') }}" alt="mail_chimp">
                                                         <span>Mail Chimp</span>
                                                     </a>
                                                 </div>
                                                 <div class="col">
                                                     <a class="dropdown-icon-item" href="#">
-                                                        <img src="public/images/brands/slack.png" alt="slack">
+                                                        <img src="{{ asset('images/brands/slack.png') }}" alt="slack">
                                                         <span>Slack</span>
                                                     </a>
                                                 </div>

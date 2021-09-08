@@ -42,7 +42,7 @@ class ItemController extends Controller
                         return $btn;
                     })
                     ->addColumn('foto', function($row){
-                        $url_image= asset('public/produk/'.$row->foto);
+                        $url_image= asset('produk/'.$row->foto);
                         return '<img src="'.$url_image.'" width="200" align="center">' ;
                         // return $row->roles->role;
                     })

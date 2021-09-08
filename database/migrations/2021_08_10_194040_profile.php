@@ -16,15 +16,15 @@ class Profile extends Migration
         Schema::create('profile', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
-            $table->string('tempat_lahir');
-            $table->date('tanggal_lahir');
-            $table->enum('jenis_kelamin', array('Laki - Laki','Perempuan'));
-            $table->string('posisi');
-            $table->text('bio');
-            $table->text('pendidikan');
-            $table->text('sertifikasi');
-            $table->text('skill');
-            $table->text('bahasa');
+            $table->string('tempat_lahir')->nullable();
+            $table->date('tanggal_lahir')->nullable();
+            $table->enum('jenis_kelamin', array('Laki - Laki','Perempuan'))->nullable();
+            $table->string('posisi')->nullable();
+            $table->text('bio')->nullable();
+            $table->text('pendidikan')->nullable();
+            $table->text('sertifikasi')->nullable();
+            $table->text('skill')->nullable();
+            $table->text('bahasa')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users');

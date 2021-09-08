@@ -1,90 +1,65 @@
-@extends('layouts.master-without-nav')
+{{-- @extends('layouts.master-without-nav') --}}
+@extends('layouts.authentication.app')
 
 @section('title') Login @endsection
 
 @section('body')
-
-<body>
-    @endsection
-
-    @section('content')
-    <div class="home-btn d-none d-sm-block">
-        <a href="index" class="text-dark"><i class="fas fa-home h2"></i></a>
-    </div>
-    <div class="account-pages my-5 pt-sm-5">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6 col-xl-5">
-                    <div class="card overflow-hidden">
-                        <div class="bg-login text-center">
-                            <div class="bg-login-overlay"></div>
-                            <div class="position-relative">
-                                <h5 class="text-white font-size-20">Welcome Back !</h5>
-                                <p class="text-white-50 mb-0">Sign in to continue to Qovex.</p>
-                                <a href="index" class="logo logo-admin mt-4">
-                                    <img src="images/logo-sm-dark.png" alt="" height="30">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="card-body pt-5">
-                            <div class="p-2">
-                                <form method="POST" action="{{ route('login') }}">
-                                    @csrf
-                                    <div class="form-group">
-                                        <label for="username">{{ __('E-Mail Address') }}</label>
-                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" @if(old('email')) value="{{ old('email') }}" @else value="" @endif required autocomplete="email" autofocus>
-                                        @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="userpassword">{{ __('Password') }}</label>
-                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                                        @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" name="remember" id="customControlInline" {{ old('remember') ? 'checked' : '' }}>
-                                        <label class="custom-control-label" for="customControlInline">{{ __('Remember Me') }}</label>
-                                    </div>
-
-                                    <div class="mt-3">
-                                        <button class="btn btn-primary btn-block waves-effect waves-light" id="login" type="submit">{{ __('Login') }}</button>
-                                    </div>
-
-                                    <div class="mt-4 text-center">
-                                        <a href="{{ route('password.request') }}" class="text-muted"><i class="mdi mdi-lock mr-1"></i> {{ __('Forgot Your Password?') }}</a>
-                                    </div>
-                                </form>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="mt-5 text-center">
-                        <p>Don't have an account ? <a href="register" class="font-weight-medium text-primary"> Signup now </a> </p>
-                        <p>© <script>
-                                document.write(new Date().getFullYear())
-                            </script> Qovex. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
-                    </div>
-
+<div class="container-fluid">
+    <div class="row row-height">
+        <div class="col-xl-4 col-lg-4 content-left">
+            <div class="content-left-wrapper">
+                <a href="{{ url('login') }}" id="logo"><img src="{{ asset('images/logo_white_square.png') }}" alt="" width="45" height="45"></a>
+                <div id="social">
+                    <ul>
+                        <li><a href="#"><i class="icon-facebook"></i></a></li>
+                        <li><a href="#"><i class="icon-twitter"></i></a></li>
+                        <li><a href="#"><i class="icon-google"></i></a></li>
+                        <li><a href="#"><i class="icon-linkedin"></i></a></li>
+                    </ul>
                 </div>
+                <!-- /social -->
+                <div>
+                    <figure><img src="{{ asset('login_new/img/info_graphic_1.svg') }}" alt="" class="img-fluid" width="270" height="270"></figure>
+                    <h2>Login Majutokoku</h2>
+                </div>
+                <div class="copy">© {{ date('Y') }} Majutokoku</div>
             </div>
+            <!-- /content-left-wrapper -->
         </div>
+        <!-- /content-left -->
+        <div class="col-xl-8 col-lg-8 content-right">
+            <div id="wizard_container">
+                <form action="{{ route('login') }}" method="post">
+                    @csrf
+                    <div class="form-group add_top_30">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror required" @if(old('email')) value="{{ old('email') }}" @else value="" @endif>
+                        @error('email')
+                            <span class="alert alert-danger mt-4 mb-4" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror required">
+                        @error('password')
+                            <span class="alert alert-danger" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group mt-4 mb-4">
+                        <a href="{{ route('register') }}" class="text-muted"><i class="mdi mdi-lock mr-1"></i> {{ __('Daftar Akun? klik disini!') }}</a><br>
+                        <a href="{{ route('password.request') }}" class="text-muted"><i class="mdi mdi-lock mr-1"></i> {{ __('Lupa Password?') }}</a>
+                    </div>
+                    <button type="submit" class="submit">Login</button>
+                </form>
+            </div>
+            <!-- /Wizard container -->
+        </div>
+        <!-- /content-right-->
     </div>
-
-    <!-- JAVASCRIPT -->
-    <script src="{{ URL::asset('libs/jquery/jquery.min.js')}}"></script>
-    <script src="{{ URL::asset('libs/bootstrap/bootstrap.min.js')}}"></script>
-    <script src="{{ URL::asset('libs/metismenu/metismenu.min.js')}}"></script>
-    <script src="{{ URL::asset('libs/simplebar/simplebar.min.js')}}"></script>
-    <script src="{{ URL::asset('libs/node-waves/node-waves.min.js')}}"></script>
-
-    <script src="{{ URL::asset('js/app.min.js')}}"></script>
-    @endsection
+    <!-- /row-->
+</div>
+@endsection

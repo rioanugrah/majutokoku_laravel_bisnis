@@ -7,21 +7,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $maintenance->title }}</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ url('public/images/logo_kecil.png') }}">
+    <link rel="shortcut icon" href="{{ asset('images/logo_kecil.png') }}">
 
     <!-- Fonts -->
     <link href="//fonts.googleapis.com/css?family=Raleway:400,200,100,300,500,600,700,800,900" rel="stylesheet">
 
     <!-- Plugins CSS -->
-    <link rel="stylesheet" href="{{ url('public/frontend_2/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ url('public/frontend_2/css/bootstrap-select.min.css') }}">
-    <link rel="stylesheet" href="{{ url('public/frontend_2/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ url('public/frontend_2/css/animate.css') }}">
-    <link rel="stylesheet" href="{{ url('public/frontend_2/css/owl.carousel.css') }}">
-    <link rel="stylesheet" href="{{ url('public/frontend_2/css/jquery.mCustomScrollbar.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend_2/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend_2/css/bootstrap-select.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend_2/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend_2/css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend_2/css/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend_2/css/jquery.mCustomScrollbar.min.css') }}">
 
     <!-- Theme CSS -->
-    <link rel="stylesheet" href="{{ url('public/frontend_2/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend_2/css/style.css') }}">
 </head>
 
 <body>
@@ -30,15 +30,15 @@
         
         <div class="layer clouds">
               <div class="cloud cloud-1">
-                  <img src="{{ url('public/frontend_2/content/img/cloud-1.png') }}" width="1600" height="850" alt="#">
+                  <img src="{{ asset('frontend_2/content/img/cloud-1.png') }}" width="1600" height="850" alt="#">
               </div>
               
               <div class="cloud cloud-2">
-                  <img src="{{ url('public/frontend_2/content/img/cloud-2.png') }}" width="1600" height="850" alt="#">
+                  <img src="{{ asset('frontend_2/content/img/cloud-2.png') }}" width="1600" height="850" alt="#">
               </div>
               
               <div class="cloud cloud-3">
-                  <img src="{{ url('public/frontend_2/content/img/cloud-1.png') }}" width="1600" height="850" alt="#">
+                  <img src="{{ asset('frontend_2/content/img/cloud-1.png') }}" width="1600" height="850" alt="#">
               </div>
         </div>
       </div><!-- .background -->
@@ -85,7 +85,7 @@
               </div><!-- .header-box -->
               
               <div class="col-sm-2 header-box logo-box text-center">
-                  <a href="index.html"><img src="{{ url('public/images/logo_majutokoku.png') }}" width="208" height="78" alt="#"></a>
+                  <a href="index.html"><img src="{{ asset('images/logo_majutokoku.png') }}" width="208" height="78" alt="#"></a>
               </div><!-- .header-box -->
               
               <div class="col-sm-5 header-box text-right hidden-xs">
@@ -160,7 +160,7 @@
                                   <div class="item" data-animation="fadeInUp" data-animation-delay="100" data-out-animation="fadeOutDown" data-out-animation-delay="100">
                                       <div class="features-box">
                                           <div class="icon">
-                                              <img src="{{ url('public/frontend_2/img/svg/features-1.svg') }}" width="90" height="90" alt="#">
+                                              <img src="{{ asset('frontend_2/img/svg/features-1.svg') }}" width="90" height="90" alt="#">
                                           </div>
                                           <a href="#" class="btn btn-sm btn-block btn-inverse" data-hover="Read More"><span class="button-label">Responsive</span></a>
                                       </div><!-- .features-box -->
@@ -169,7 +169,7 @@
                                   <div class="item" data-animation="fadeInUp" data-animation-delay="200" data-out-animation="fadeOutDown" data-out-animation-delay="200">
                                       <div class="features-box">
                                           <div class="icon">
-                                              <img src="{{ url('public/frontend_2/img/svg/features-2.svg') }}" width="90" height="90" alt="#">
+                                              <img src="{{ asset('frontend_2/img/svg/features-2.svg') }}" width="90" height="90" alt="#">
                                           </div>
                                           <a href="#" class="btn btn-sm btn-block btn-inverse" data-hover="Read More"><span class="button-label">Valid</span></a>
                                       </div><!-- .features-box -->
@@ -178,7 +178,7 @@
                                   <div class="item" data-animation="fadeInUp" data-animation-delay="300" data-out-animation="fadeOutDown" data-out-animation-delay="300">
                                       <div class="features-box">
                                           <div class="icon">
-                                              <img src="{{ url('public/frontend_2/img/svg/features-3.svg') }}" width="90" height="90" alt="#">
+                                              <img src="{{ asset('frontend_2/img/svg/features-3.svg') }}" width="90" height="90" alt="#">
                                           </div>
                                           <a href="#" class="btn btn-sm btn-block btn-inverse" data-hover="Read More"><span class="button-label">Customizable</span></a>
                                       </div><!-- .features-box -->
@@ -187,7 +187,7 @@
                                   <div class="item" data-animation="fadeInUp" data-animation-delay="400" data-out-animation="fadeOutDown" data-out-animation-delay="400">
                                       <div class="features-box">
                                           <div class="icon">
-                                              <img src="{{ url('public/frontend_2/img/svg/features-4.svg') }}" width="90" height="90" alt="#">
+                                              <img src="{{ asset('frontend_2/img/svg/features-4.svg') }}" width="90" height="90" alt="#">
                                           </div>
                                           <a href="#" class="btn btn-sm btn-block btn-inverse" data-hover="Read More"><span class="button-label">Retina</span></a>
                                       </div><!-- .features-box -->
@@ -431,21 +431,21 @@
       </div>
 </body>
 <!--[if (!IE)|(gt IE 8)]><!-->
-    <script src="{{ url('public/frontend_2/js/jquery-2.1.3.min.js') }}"></script>
+    <script src="{{ asset('frontend_2/js/jquery-2.1.3.min.js') }}"></script>
     <!--<![endif]-->
     
     <!--[if lte IE 8]>
       <script src="js/jquery-1.9.1.min.js"></script>
     <![endif]-->
-    <script src="{{ url('public/frontend_2/js/bootstrap.min.js') }}"></script>
-    <script src="{{ url('public/frontend_2/js/bootstrap-select.min.js') }}"></script>
-    <script src="{{ url('public/frontend_2/js/owl.carousel.min.js') }}"></script>
-    <script src="{{ url('public/frontend_2/js/jquery.ajaxchimp.min.js') }}"></script>
-    <script src="{{ url('public/frontend_2/js/jquery.plugin.min.js') }}"></script> 
-    <script src="{{ url('public/frontend_2/js/jquery.countdown.min.js') }}"></script>
-    <script src="{{ url('public/frontend_2/js/jquery.mCustomScrollbar.min.js') }}"></script>
-    <script src="{{ url('public/frontend_2/js/jquery.touchwipe.min.js') }}"></script>
-    <script src="{{ url('public/frontend_2/js/included-plagins.js') }}"></script>
-    <script src="{{ url('public/frontend_2/js/froogaloop2.min.js') }}"></script>
-    <script src="{{ url('public/frontend_2/js/main.js') }}"></script>
+    <script src="{{ asset('frontend_2/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('frontend_2/js/bootstrap-select.min.js') }}"></script>
+    <script src="{{ asset('frontend_2/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('frontend_2/js/jquery.ajaxchimp.min.js') }}"></script>
+    <script src="{{ asset('frontend_2/js/jquery.plugin.min.js') }}"></script> 
+    <script src="{{ asset('frontend_2/js/jquery.countdown.min.js') }}"></script>
+    <script src="{{ asset('frontend_2/js/jquery.mCustomScrollbar.min.js') }}"></script>
+    <script src="{{ asset('frontend_2/js/jquery.touchwipe.min.js') }}"></script>
+    <script src="{{ asset('frontend_2/js/included-plagins.js') }}"></script>
+    <script src="{{ asset('frontend_2/js/froogaloop2.min.js') }}"></script>
+    <script src="{{ asset('frontend_2/js/main.js') }}"></script>
 </html>

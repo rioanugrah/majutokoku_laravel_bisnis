@@ -176,7 +176,6 @@
                                     <!-- Timeline 3 -->
                                 </div>
                                 <!-- Timeline row Over -->
-
                             </div>
                         </div>
                         <div class="tab-pane" id="settings" role="tabpanel">
@@ -301,7 +300,9 @@
                                     </div> <!-- end col -->
                                 </div>
                             </form>
-
+                            <div class="btn-group mt-4">
+                                <button class="btn btn-success" onclick="edit()">Edit</button>
+                            </div>
                         </div>
                     </div>
 
@@ -395,4 +396,16 @@
     <!-- apexcharts -->
     <script src="{{ URL::asset('public/libs/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ URL::asset('public/js/pages/profile.init.js') }}"></script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        function edit() {
+            alert('test');
+            // $('#buat').modal('show');
+        }
+    </script>
 @endsection

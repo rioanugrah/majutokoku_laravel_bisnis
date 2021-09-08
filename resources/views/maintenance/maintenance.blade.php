@@ -5,7 +5,7 @@
 @endsection
 
 @section('css')
-    <link href="{{ URL::asset('public/libs/datatables/datatables.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('libs/datatables/datatables.min.css')}}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -43,11 +43,11 @@
 @endsection
 
 @section('script')
-<script src="{{ URL::asset('public/libs/datatables/datatables.min.js')}}"></script>
-<script src="{{ URL::asset('public/libs/jszip/jszip.min.js')}}"></script>
+<script src="{{ URL::asset('libs/datatables/datatables.min.js')}}"></script>
+<script src="{{ URL::asset('libs/jszip/jszip.min.js')}}"></script>
 {{-- <script src="{{ URL::asset('public/libs/pdfmake/pdfmake.min.js')}}"></script> --}}
 
-<script src="{{ URL::asset('public/js/pages/datatables.init.js')}}"></script>
+<script src="{{ URL::asset('js/pages/datatables.init.js')}}"></script>
 
 <script>
     $.ajaxSetup({
