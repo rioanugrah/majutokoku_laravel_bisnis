@@ -24,9 +24,9 @@ class ItemController extends Controller
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
                         $btn = '<div class="button-items">';
-                        $btn = $btn.'<button type="button" onclick="detail('.$row->kode_barang.')" class="btn btn-success waves-effect waves-light">
+                        $btn = $btn.'<a href="'.url('item/download_barcode/'.$row->kode_barang).'" class="btn btn-success waves-effect waves-light">
                                     <i class="bx bx-barcode font-size-16 align-middle mr-2"></i> Download Barcode
-                                </button>';
+                                </a>';
                         $btn = $btn.'<button type="button" onclick="detail('.$row->kode_barang.')" class="btn btn-primary waves-effect waves-light">
                                     <i class="bx bx-box font-size-16 align-middle mr-2"></i> Lihat Barang
                                 </button>';
@@ -110,6 +110,15 @@ class ItemController extends Controller
         }
 
         return false;
+    }
+
+    public function simpan_barcode($kode_barang)
+    {
+        $item = Item::where('kode_barang',$kode_barang)->first();
+        $d = new DNS1D();
+        $d->setStorPath(__DIR__.'/cache/');
+        return Storage::download('<img src="data:image/png;base64,' . $d->getBarcodePNG($item->kode_barang, 'EAN13') . '" alt="barcode"   />');
+        // return Storage::download($item->kode_barang.'.jpg');
     }
 
     public function downloadBarcode(Request $request)
@@ -283,9 +292,10 @@ class ItemController extends Controller
             $input = $request->all();
             $input['edit_foto'] = time().'.'.$request->edit_foto->getClientOriginalExtension();
             // $request->edit_foto->move(public_path('produk'), $input['edit_foto']);
-            // $path = Storage::putFileAs('produk',$input['edit_foto']);
-            $request->edit_foto->storeAs('produk', $input['edit_foto']);
+            // $path = Storage::putFile('produk/',$input['edit_foto']);
+            // $request->edit_foto->storeAs('produk', $input['edit_foto']);
             // $request->edit_foto->move(public_path('produk'), $input['edit_foto']);
+            $request->edit_foto->move(storage_path('app/produk'), $input['edit_foto']);
         //    $item = Item::create($input);
             $item = Item::where('kode_barang',$input['edit_kode_barang'])->update([
                'nama_barang' => $input['edit_nama_barang'],

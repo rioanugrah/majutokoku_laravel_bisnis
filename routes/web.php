@@ -68,6 +68,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('portal/simpan', 'PortalController@simpan')->name('portal.simpan')->middleware('verified');
     
     Route::get('item', 'ItemController@index')->name('item')->middleware('verified');
+    Route::get('item/download_barcode/{kode_barcode}', 'ItemController@simpan_barcode')->middleware('verified');
     Route::post('item/simpan', 'ItemController@simpan')->name('item.simpan')->middleware('verified');
     Route::post('item/update', 'ItemController@update')->name('item.update')->middleware('verified');
     Route::get('item/{kode_barang}', 'ItemController@barcode')->middleware('verified');
