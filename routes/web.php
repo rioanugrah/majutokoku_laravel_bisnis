@@ -40,6 +40,11 @@ Route::post('login-status', 'QovexController@checkStatus');
 Route::get('/', 'FrontendController@index');
 Route::get('maintenance', 'MaintenanceController@index');
 
+Route::get('symlink', function () {
+    Artisan::call('storage:link', []);
+    return 'berhasil';
+});
+
 
 // You can also use auth middleware to prevent unauthenticated users
 Route::group(['middleware' => 'auth'], function () {
@@ -91,6 +96,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('curriculum', 'CVController@index')->name('cv')->middleware('verified');
     Route::get('{any}', 'QovexController@index');
+
 });
 
 // Route::domain('pulsa.localhost:8000')->group(function () {
