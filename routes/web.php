@@ -41,8 +41,12 @@ Route::get('/', 'FrontendController@index');
 Route::get('maintenance', 'MaintenanceController@index');
 
 Route::get('symlink', function () {
-    Artisan::call('storage:link', []);
-    return 'berhasil';
+    $targetFolder = '/home/majutoko/majutokoku_laravel_bisnis/storage/app/public';
+    $linkFolder = '/home/majutoko/majutokoku.store/storage';
+    symlink($targetFolder, $linkFolder);
+    echo 'Symlink process successfully completed';
+    // Artisan::call('storage:link', []);
+    // return 'berhasil';
 });
 
 
