@@ -19,7 +19,30 @@
         <!--- Sidemenu -->
         <div id="sidebar-menu">
             <!-- Left Menu Start -->
+            <?php 
+                $kategori_menu = \App\Models\MenuKategori::select('menu_kategori')->groupBy('menu_kategori')->get();
+            ?>
+
             <ul class="metismenu list-unstyled" id="side-menu">
+                @foreach ($kategori_menu as $km)
+                <li class="menu-title">{{ $km->menu_kategori }}</li>
+
+                <?php 
+                    $data_kategori_menu = \App\Models\MenuKategori::where('menu_kategori', $km->menu_kategori)->get();
+                ?>
+
+                @foreach ($data_kategori_menu as $dkm)
+                    <li>
+                        <a href="{{ url($dkm->menus->slug) }}" class="waves-effect">
+                            <i class="mdi mdi-airplay"></i>
+                            <span>{{ $dkm->menus->menu }}</span>
+                        </a>
+                    </li>
+                @endforeach
+
+                @endforeach
+            </ul>
+            {{-- <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title">Aplikasi</li>
 
                 <li>
@@ -50,9 +73,6 @@
                         <i class="mdi mdi-cogs"></i>
                         <span>Master Data</span>
                     </a>
-                    {{-- <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('kategori') }}">Kategori</a></li>
-                    </ul> --}}
                 </li>
 
                 <li class="menu-title">Frontend</li>
@@ -77,13 +97,15 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('kategori') }}">Kategori</a></li>
+                        <li><a href="{{ route('menu.kategori') }}">Kategori Menu</a></li>
+                        <li><a href="{{ route('menu') }}">Menu</a></li>
                         <li><a href="{{ route('maintenance') }}">Maintenance</a></li>
                         <li><a href="{{ route('role') }}">Akses</a></li>
                         <li><a href="{{ route('pengguna') }}">Pengguna</a></li>
                     </ul>
                 </li>
 
-            </ul>
+            </ul> --}}
         </div>
         <!-- Sidebar -->
     </div>

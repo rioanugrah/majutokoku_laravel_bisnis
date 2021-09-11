@@ -6,7 +6,7 @@
 
     @component('common-components.breadcrumb')
         @slot('title') Dashboard @endslot
-        @slot('title_li') Welcome to Qovex Dashboard @endslot
+        @slot('title_li') Dashboard @endslot
     @endcomponent
 
     <div class="row">
@@ -314,7 +314,7 @@
                             <a href="#">
                                 <div class="media">
                                     <div class="mr-3 align-self-center">
-                                        <img src="public/images/users/avatar-3.jpg" alt="" class="avatar-sm rounded-circle">
+                                        <img src="{{ asset('images/users/avatar-6.jpg') }}" alt="" class="avatar-sm rounded-circle">
                                     </div>
                                     <div class="media-body overflow-hidden">
                                         <h5 class="font-size-16 mb-1">Paul</h5>
@@ -330,7 +330,7 @@
                             <a href="#">
                                 <div class="media">
                                     <div class="mr-3 align-self-center">
-                                        <img src="public/images/users/avatar-4.jpg" alt="" class="avatar-sm rounded-circle">
+                                        <img src="{{ asset('images/users/avatar-6.jpg') }}" alt="" class="avatar-sm rounded-circle">
                                     </div>
                                     <div class="media-body overflow-hidden">
                                         <h5 class="font-size-16 mb-1">Mary</h5>
@@ -346,7 +346,7 @@
                             <a href="#">
                                 <div class="media">
                                     <div class="mr-3 align-self-center">
-                                        <img src="public/images/users/avatar-5.jpg" alt="" class="avatar-sm rounded-circle">
+                                        <img src="{{ asset('images/users/avatar-6.jpg') }}" alt="" class="avatar-sm rounded-circle">
                                     </div>
                                     <div class="media-body overflow-hidden">
                                         <h5 class="font-size-16 mb-1">Cynthia</h5>
@@ -362,7 +362,7 @@
                             <a href="#">
                                 <div class="media">
                                     <div class="mr-3 align-self-center">
-                                        <img src="public/images/users/avatar-6.jpg" alt="" class="avatar-sm rounded-circle">
+                                        <img src="{{ asset('images/users/avatar-6.jpg') }}" alt="" class="avatar-sm rounded-circle">
                                     </div>
                                     <div class="media-body overflow-hidden">
                                         <h5 class="font-size-16 mb-1">Darren</h5>
@@ -464,11 +464,11 @@
 
 @section('script')
     <!-- plugin js -->
-    <script src="{{ URL::asset('public/libs/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ URL::asset('libs/apexcharts/apexcharts.min.js') }}"></script>
 
     <!-- jquery.vectormap map -->
-    <script src="{{ URL::asset('public/libs/jquery-vectormap/jquery-vectormap.min.js') }}"></script>
+    <script src="{{ URL::asset('libs/jquery-vectormap/jquery-vectormap.min.js') }}"></script>
 
     <!-- Calendar init -->
-    <script src="{{ URL::asset('public/js/pages/dashboard.init.js') }}"></script>
+    <script src="{{ URL::asset('js/pages/dashboard.init.js') }}"></script>
 @endsection
