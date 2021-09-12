@@ -44,7 +44,7 @@ class ItemController extends Controller
                     })
                     ->addColumn('foto', function($row){
                         $url_image= Storage::url($row->foto);
-                        // $url_image= asset('storage/produk/'.$row->foto);
+                        // $url_image= asset('storage/app/produk/'.$row->foto);
                         return '<img src="'.$url_image.'" width="200" align="center">' ;
                         // return $row->roles->role;
                     })

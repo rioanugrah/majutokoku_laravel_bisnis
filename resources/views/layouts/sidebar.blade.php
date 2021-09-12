@@ -34,7 +34,7 @@
                 @foreach ($data_kategori_menu as $dkm)
                     <li>
                         <a href="{{ url($dkm->menus->slug) }}" class="waves-effect">
-                            <i class="mdi mdi-airplay"></i>
+                            <i class="{{ $dkm->menus->icon_menu }}"></i>
                             <span>{{ $dkm->menus->menu }}</span>
                         </a>
                     </li>

@@ -54,9 +54,12 @@ class MenuController extends Controller
                                         </button>';
                         }
                         if($row->d == 'Y'){
-                            $btn = $btn.'<button type="button" onclick="delete('.$row->id.')" class="btn btn-danger waves-effect waves-light">
+                            $btn = $btn.'<button type="button" onclick="hapus('.$row->id.')" class="btn btn-danger waves-effect waves-light">
                                             <i class="bx bx-trash-alt font-size-16 align-middle mr-2"></i> Delete
                                         </button>';
+                            // $btn = $btn.'<a href="'.url('menu/delete/'.$row->id).'" class="btn btn-danger waves-effect waves-light">
+                            //                 <i class="bx bx-trash-alt font-size-16 align-middle mr-2"></i> Delete
+                            //             </a>';
                         }
                             // if($row->role_id == auth()->user()->role){
                                 
@@ -111,12 +114,14 @@ class MenuController extends Controller
             'menu'  => 'required',
             'slug'  => 'required',
             'role_id'  => 'required',
+            'icon_menu'  => 'required',
         ];
  
         $messages = [
             'menu.required'  => 'Menu wajib diisi.',
             'slug.required'   => 'Link wajib diisi.',
             'role_id.required'   => 'Akses wajib diisi.',
+            'icon_menu.required'   => 'Menu Icon wajib diisi.',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -193,6 +198,112 @@ class MenuController extends Controller
             [
                 'success' => false,
                 'error' => $validator->errors()->all()
+            ]
+        );
+    }
+
+    public function edit_menu($id)
+    {
+        $menu = Menu::find($id);
+
+        if(empty($menu)){
+            return response()->json([
+                'success' => false,
+                'message' => 'Menu Tidak Ditemukan'
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $menu
+        ]);
+    }
+
+    public function update_menu(Request $request)
+    {
+        $input = $request->all();
+
+        $rules = [
+            'edit_menu'  => 'required',
+            'edit_slug'  => 'required',
+            'edit_role_id'  => 'required',
+            'edit_icon_menu'  => 'required',
+        ];
+ 
+        $messages = [
+            'edit_menu.required'  => 'Menu wajib diisi.',
+            'edit_slug.required'   => 'Link wajib diisi.',
+            'edit_role_id.required'   => 'Akses wajib diisi.',
+            'edit_icon_menu.required'   => 'Menu Icon wajib diisi.',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if($validator->passes()){
+
+            $menu = Menu::find($input['edit_id'])->update([
+                'menu' => $input['edit_menu'],
+                'slug' => $input['edit_slug'],
+                'role_id' => $input['edit_role_id'],
+                'icon_menu' => $input['edit_icon_menu'],
+                'c' => $input['edit_c'],
+                'r' => $input['edit_r'],
+                'u' => $input['edit_u'],
+                'd' => $input['edit_d'],
+            ]);
+    
+            if($menu){
+                $message_title="Berhasil !";
+                $message_content="Menu Berhasil Diupdate";
+                $message_type="success";
+                $message_succes = true;
+            }
+    
+            $array_message = array(
+                'success' => $message_succes,
+                'message_title' => $message_title,
+                'message_content' => $message_content,
+                'message_type' => $message_type,
+            );
+            return response()->json($array_message);
+        }
+
+        return response()->json(
+            [
+                'success' => false,
+                'error' => $validator->errors()->all()
+            ]
+        );
+
+    }
+
+    public function delete_menu($id)
+    {
+        $menu = $menu = Menu::find($id);
+
+        if(!empty($menu)){
+            
+            $menu->delete();
+
+            $message_title="Berhasil !";
+            $message_content="Menu Berhasil Dihapus";
+            $message_type="success";
+            $message_succes = true;
+
+            $array_message = array(
+                'success' => $message_succes,
+                'message_title' => $message_title,
+                'message_content' => $message_content,
+                'message_type' => $message_type,
+            );
+            return response()->json($array_message);
+
+        }
+
+        return response()->json(
+            [
+                'success' => false,
+                'error' => 'Menu Tidak Berhasil Dihapus'
             ]
         );
     }

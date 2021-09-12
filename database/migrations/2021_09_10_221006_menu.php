@@ -18,6 +18,7 @@ class Menu extends Migration
             $table->string('menu');
             $table->string('slug');
             $table->integer('role_id')->unsigned();
+            $table->string('icon_menu');
             // $table->bigInteger('user_id')->unsigned();
             // $table->string('c', 5);
             // $table->string('r', 5);

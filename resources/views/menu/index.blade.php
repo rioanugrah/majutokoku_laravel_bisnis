@@ -13,6 +13,7 @@
         @slot('title') Menu @endslot
     @endcomponent
     @include('menu.modalBuat')
+    @include('menu.modalEdit')
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -25,6 +26,7 @@
                             <tr>
                                 {{-- <th>No</th> --}}
                                 <th>Menu</th>
+                                <th>Icon Menu</th>
                                 <th>Link</th>
                                 <th>Akses</th>
                                 <th>Action</th>
@@ -59,6 +61,7 @@
             columns: [
                 // {data: 'no', name: 'no'},
                 {data: 'menu', name: 'menu'},
+                {data: 'icon_menu', name: 'icon_menu'},
                 {data: 'slug', name: 'slug'},
                 {data: 'role', name: 'role'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
@@ -102,6 +105,39 @@
                             message: result.message_content
                         });
                         this.reset();
+                        table.ajax.reload();
+                    }else{
+                        iziToast.error({
+                            title: result.success,
+                            message: result.error
+                        });
+                    }
+                },
+                error: function (request, status, error) {
+                    iziToast.error({
+                        title: 'Error',
+                        message: error,
+                    });
+                }
+            });
+        });
+
+        $('#update-upload-form').submit(function(e) {
+            e.preventDefault();
+            let formData = new FormData(this);
+
+            $.ajax({
+                type:'POST',
+                url: "{{ route('menu.update') }}",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: (result) => {
+                    if(result.success != false){
+                        iziToast.success({
+                            title: result.message_title,
+                            message: result.message_content
+                        });
                         table.ajax.reload();
                     }else{
                         iziToast.error({
@@ -187,13 +223,22 @@
             // alert(id);
             $.ajax({
                 type: 'GET',
-                url: "{{ url('kategori') }}"+'/'+id,
+                url: "{{ url('menu/detail') }}"+'/'+id,
                 contentType: "application/json;  charset=utf-8",
                 cache: false,
                 success: function(result){
-                    // alert(result.id);
-                    $('#edit_role').val(result.data.id);
-                    $('#edit_nama_akses').val(result.data.role);
+                    // alert(result.data);
+                    document.getElementById('edit_nama_menu').innerHTML = 'Edit - '+result.data.menu;
+                    $('#edit_id').val(result.data.id);
+                    $('#edit_menu').val(result.data.menu);
+                    $('#edit_slug').val(result.data.slug);
+                    $('#edit_icon_menu').val(result.data.icon_menu);
+                    $('#edit_akses').val(result.data.role_id);
+                    $('#edit_c').val(result.data.c);
+                    $('#edit_r').val(result.data.r);
+                    $('#edit_u').val(result.data.u);
+                    $('#edit_d').val(result.data.d);
+                    // $('#edit_nama_akses').val(result.data.role);
                     $('#edit').modal('show');
                 }
             })
@@ -228,7 +273,7 @@
             // alert(id);
             $.ajax({
                 type: 'GET',
-                url: "{{ url('kategori/delete') }}"+'/'+id,
+                url: "{{ url('menu/delete') }}"+'/'+id,
                 contentType: "application/json;  charset=utf-8",
                 cache: false,
                 success: function(result){

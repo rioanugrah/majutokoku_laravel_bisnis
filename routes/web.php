@@ -102,6 +102,9 @@ Route::group(['middleware' => 'auth'], function () {
     
     Route::get('menu', 'MenuController@index')->name('menu')->middleware('verified');
     Route::post('menu/simpan', 'MenuController@simpan')->name('menu.simpan')->middleware('verified');
+    Route::get('menu/detail/{id}', 'MenuController@edit_menu')->middleware('verified');
+    Route::post('menu/update', 'MenuController@update_menu')->name('menu.update')->middleware('verified');
+    Route::get('menu/delete/{id}', 'MenuController@delete_menu')->middleware('verified');
     
     Route::get('menu_kategori', 'MenuController@index_kategori_menu')->name('menu.kategori')->middleware('verified');
     Route::post('menu_kategori/simpan', 'MenuController@simpan_menu_kategori')->name('menu.kategori.simpan')->middleware('verified');

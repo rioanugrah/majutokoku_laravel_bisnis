@@ -20,7 +20,7 @@ class Menu extends Model
         'menu',
         'slug',
         'role_id',
-        // 'user_id',
+        'icon_menu',
         'c',
         'r',
         'u',
