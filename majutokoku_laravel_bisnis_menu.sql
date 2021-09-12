@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2021 at 06:12 PM
+-- Generation Time: Sep 12, 2021 at 07:41 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.19
 
@@ -32,6 +32,7 @@ CREATE TABLE `menu` (
   `menu` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `role_id` int(10) UNSIGNED NOT NULL,
+  `icon_menu` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `c` enum('Y','N') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
   `r` enum('Y','N') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
   `u` enum('Y','N') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
@@ -45,23 +46,23 @@ CREATE TABLE `menu` (
 -- Dumping data for table `menu`
 --
 
-INSERT INTO `menu` (`id`, `menu`, `slug`, `role_id`, `c`, `r`, `u`, `d`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Menu', 'menu', 1, 'N', 'Y', 'N', 'Y', '2021-09-11 12:26:30', '2021-09-11 12:26:30', NULL),
-(2, 'Menu', 'menu', 2, 'Y', 'Y', 'Y', 'Y', '2021-09-11 12:41:10', '2021-09-11 12:41:10', NULL),
-(3, 'Dashboard', 'beranda', 1, 'N', 'N', 'N', 'N', '2021-09-11 13:02:40', '2021-09-11 13:02:40', NULL),
-(4, 'Item', 'item', 1, 'Y', 'Y', 'Y', 'Y', '2021-09-11 13:06:07', '2021-09-11 13:06:07', NULL),
-(5, 'Curriculum Vitae', 'curriculum', 1, 'Y', 'Y', 'Y', 'Y', '2021-09-11 13:06:57', '2021-09-11 13:06:57', NULL),
-(6, 'Dashboard', 'beranda', 2, 'N', 'N', 'N', 'N', '2021-09-11 13:09:00', '2021-09-11 13:09:00', NULL),
-(7, 'Item', 'item', 2, 'Y', 'Y', 'Y', 'Y', '2021-09-11 13:09:21', '2021-09-11 13:09:21', NULL),
-(8, 'Curriculum Vitae', 'curriculum', 2, 'Y', 'Y', 'Y', 'Y', '2021-09-11 13:10:08', '2021-09-11 13:10:08', NULL),
-(9, 'Transaksi', 'transaksi', 2, 'Y', 'Y', 'Y', 'Y', '2021-09-11 13:10:36', '2021-09-11 13:10:36', NULL),
-(10, 'Tiket', 'tiket', 2, 'Y', 'Y', 'Y', 'Y', '2021-09-11 13:10:51', '2021-09-11 13:10:51', NULL),
-(11, 'Testimoni', 'testimoni', 2, 'Y', 'Y', 'Y', 'Y', '2021-09-11 13:11:19', '2021-09-11 13:11:19', NULL),
-(12, 'Portal', 'portal', 2, 'Y', 'Y', 'Y', 'Y', '2021-09-11 13:11:31', '2021-09-11 13:11:31', NULL),
-(13, 'Kategori', 'kategori', 2, 'Y', 'Y', 'Y', 'Y', '2021-09-11 13:12:57', '2021-09-11 13:12:57', NULL),
-(14, 'Maintenance', 'maintenance', 2, 'Y', 'Y', 'Y', 'Y', '2021-09-11 13:13:12', '2021-09-11 13:13:12', NULL),
-(15, 'Akses', 'akses_pengguna', 2, 'Y', 'Y', 'Y', 'Y', '2021-09-11 13:13:37', '2021-09-11 13:13:37', NULL),
-(16, 'Pengguna', 'pengguna', 2, 'Y', 'Y', 'Y', 'Y', '2021-09-11 13:13:58', '2021-09-11 13:13:58', NULL);
+INSERT INTO `menu` (`id`, `menu`, `slug`, `role_id`, `icon_menu`, `c`, `r`, `u`, `d`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Menu', 'menu', 1, NULL, 'N', 'Y', 'N', 'Y', '2021-09-11 12:26:30', '2021-09-11 12:26:30', NULL),
+(2, 'Menu', 'menu', 2, NULL, 'Y', 'Y', 'Y', 'Y', '2021-09-11 12:41:10', '2021-09-11 12:41:10', NULL),
+(3, 'Dashboard', 'beranda', 1, 'mdi mdi-airplay', 'N', 'N', 'Y', 'N', '2021-09-11 13:02:40', '2021-09-12 04:51:25', NULL),
+(4, 'Item', 'item', 1, 'mdi mdi-package', 'Y', 'Y', 'Y', 'Y', '2021-09-11 13:06:07', '2021-09-12 04:56:18', NULL),
+(5, 'Curriculum Vitae', 'curriculum', 1, 'mdi mdi-paperclip', 'Y', 'Y', 'Y', 'Y', '2021-09-11 13:06:57', '2021-09-12 05:30:32', NULL),
+(6, 'Dashboard', 'beranda', 2, 'mdi mdi-airplay', 'N', 'N', 'Y', 'N', '2021-09-11 13:09:00', '2021-09-12 04:49:57', NULL),
+(7, 'Item', 'item', 2, 'mdi mdi-package', 'Y', 'Y', 'Y', 'Y', '2021-09-11 13:09:21', '2021-09-12 04:56:05', NULL),
+(8, 'Curriculum Vitae', 'curriculum', 2, 'mdi mdi-paperclip', 'Y', 'Y', 'Y', 'Y', '2021-09-11 13:10:08', '2021-09-12 05:30:23', NULL),
+(9, 'Transaksi', 'transaksi', 2, 'mdi mdi-beaker-check-outline', 'Y', 'Y', 'Y', 'Y', '2021-09-11 13:10:36', '2021-09-12 05:31:51', NULL),
+(10, 'Tiket', 'tiket', 2, NULL, 'Y', 'Y', 'Y', 'Y', '2021-09-11 13:10:51', '2021-09-11 13:10:51', NULL),
+(11, 'Testimoni', 'testimoni', 2, 'mdi mdi-nature-people', 'Y', 'Y', 'Y', 'Y', '2021-09-11 13:11:19', '2021-09-12 05:34:52', NULL),
+(12, 'Portal', 'portal', 2, 'mdi mdi-circle-double', 'Y', 'Y', 'Y', 'Y', '2021-09-11 13:11:31', '2021-09-12 05:33:37', NULL),
+(13, 'Kategori', 'kategori', 2, NULL, 'Y', 'Y', 'Y', 'Y', '2021-09-11 13:12:57', '2021-09-11 13:12:57', NULL),
+(14, 'Maintenance', 'maintenance', 2, NULL, 'Y', 'Y', 'Y', 'Y', '2021-09-11 13:13:12', '2021-09-11 13:13:12', NULL),
+(15, 'Akses', 'akses_pengguna', 2, 'mdi mdi-key-link', 'Y', 'Y', 'Y', 'Y', '2021-09-11 13:13:37', '2021-09-12 05:37:40', NULL),
+(16, 'Pengguna', 'pengguna', 2, 'dripicons-user-group', 'Y', 'Y', 'Y', 'Y', '2021-09-11 13:13:58', '2021-09-12 05:36:29', NULL);
 
 -- --------------------------------------------------------
 

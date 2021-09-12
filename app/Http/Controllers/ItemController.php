@@ -43,7 +43,9 @@ class ItemController extends Controller
                         return $btn;
                     })
                     ->addColumn('foto', function($row){
-                        $url_image= Storage::url($row->foto);
+                        $url_image= Storage::url('produk/'.$row->foto);
+                        // $url_image= Storage::disk('storage')->get('produk/'.$row->foto);
+                        // $url_image= asset('storage/app/public/produk/'.$row->foto);
                         // $url_image= asset('storage/app/produk/'.$row->foto);
                         return '<img src="'.$url_image.'" width="200" align="center">' ;
                         // return $row->roles->role;
@@ -291,12 +293,18 @@ class ItemController extends Controller
         if ($validator->passes()) {
             $input = $request->all();
             $input['edit_foto'] = time().'.'.$request->edit_foto->getClientOriginalExtension();
+            
+            // $input['edit_foto']->store('public/produk');
+            // $saveProduk = $request->edit_foto->store('public/produk');
+            
             // $request->edit_foto->move(public_path('produk'), $input['edit_foto']);
             // $path = Storage::putFile('produk/',$input['edit_foto']);
             // $request->edit_foto->storeAs('produk', $input['edit_foto']);
             // $request->edit_foto->move(public_path('produk'), $input['edit_foto']);
-            $request->edit_foto->move(storage_path('app/produk'), $input['edit_foto']);
-        //    $item = Item::create($input);
+            
+            $request->edit_foto->move(storage_path('app/public/produk'), $input['edit_foto']);
+            // $item = Item::create($input);
+            
             $item = Item::where('kode_barang',$input['edit_kode_barang'])->update([
                'nama_barang' => $input['edit_nama_barang'],
                'kategori' => $input['edit_kategori'],
@@ -304,6 +312,7 @@ class ItemController extends Controller
                'stock' => $input['edit_stock'],
                'harga_barang' => $input['edit_harga_barang'],
                'foto' => $input['edit_foto'],
+            //    'foto' => $saveProduk,
            ]);
 
            if($item){
