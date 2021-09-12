@@ -25,7 +25,7 @@ class ItemController extends Controller
                     ->addColumn('action', function($row){
                         $btn = '<div class="button-items">';
                         $btn = $btn.'<a href="'.url('item/download_barcode/'.$row->kode_barang).'" class="btn btn-success waves-effect waves-light">
-                                    <i class="bx bx-barcode font-size-16 align-middle mr-2"></i> Download Barcode
+                                    <i class="bx bx-barcode font-size-16 align-middle mr-2"></i> Unduh
                                 </a>';
                         $btn = $btn.'<button type="button" onclick="detail('.$row->kode_barang.')" class="btn btn-primary waves-effect waves-light">
                                     <i class="bx bx-box font-size-16 align-middle mr-2"></i> Lihat Barang
@@ -234,7 +234,8 @@ class ItemController extends Controller
         if ($validator->passes()) {
             $input = $request->all();
             $input['foto'] = time().'.'.$request->foto->getClientOriginalExtension();
-            $request->foto->move(public_path('produk'), $input['foto']);
+            // $request->foto->move(public_path('produk'), $input['foto']);
+            $request->foto->move(storage_path('app/public/produk'), $input['foto']);
     
            $item = Item::create($input);
 
@@ -287,7 +288,7 @@ class ItemController extends Controller
         $validator = Validator::make($request->all(), $rules, $messages);
         
         $detail_item = Item::where('kode_barang',$request->edit_kode_barang)->first();
-        $image_path = public_path('produk/'.$detail_item->foto);
+        $image_path = storage_path('app/public/produk/'.$detail_item->foto);
         File::delete($image_path);
 
         if ($validator->passes()) {

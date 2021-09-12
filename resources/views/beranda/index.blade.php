@@ -10,6 +10,33 @@
     @endcomponent
 
     <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="media">
+                        <div class="avatar-sm font-size-20 mr-3">
+                            <span class="avatar-title bg-soft-primary text-primary rounded">
+                                <i class="mdi mdi-bell-ring-outline"></i>
+                            </span>
+                        </div>
+                        <div class="media-body">
+                            <div class="font-size-16 mt-2">Notification</div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <ul>
+                            @foreach ($maintenance as $mc)
+                                @if ($mc->status == 'Aktif')
+                                <li>{{ $mc->title }} - {{ $mc->deskripsi }}</li>
+                                @else
+                                <li>No Notifications</li>
+                                @endif
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-xl-3">
 
             @component('common-components.dashboard-widget')
@@ -27,21 +54,21 @@
 
                 @slot('title') Users @endslot
 
-                @if ($data['users'] == 0)
+                @if ($users == 0)
                     @slot('iconClass') mdi mdi-account-multiple-outline @endslot
-                    @slot('price') {{ $data['users'] }} @endslot
+                    @slot('price') {{ $users }} @endslot
                     @slot('percentage') 0% @endslot
                     @slot('pValue') 0 @endslot
                     @slot('pClass') progress-bar bg-secondary @endslot
-                @elseif($data['users'] > 0)
+                @elseif($users > 0)
                     @slot('iconClass') mdi mdi-account-multiple-outline @endslot
-                    @slot('price') {{ $data['users'] }} @endslot
+                    @slot('price') {{ $users }} @endslot
                     @slot('percentage') 0.16% @endslot
                     @slot('pClass') progress-bar bg-success @endslot
-                    @slot('pValue') {{ $data['users'] }} @endslot
-                @elseif($data['users'] < 0)
+                    @slot('pValue') {{ $users }} @endslot
+                @elseif($users < 0)
                     @slot('iconClass') mdi mdi-account-multiple-outline @endslot
-                    @slot('price') {{ $data['users'] }} @endslot
+                    @slot('price') {{ $users }} @endslot
                     @slot('percentage') 0.16% @endslot
                     @slot('pClass') progress-bar bg-danger @endslot
                 @endif

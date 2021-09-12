@@ -24,6 +24,12 @@
                             <input class="form-control" type="text" name="slug" placeholder="Link" id="slug">
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label">Icon Menu</label>
+                        <div class="col-md-3">
+                            <input class="form-control" type="text" name="icon_menu" placeholder="Icon Menu" id="icon_menu">
+                        </div>
+                    </div>
                     @if (auth()->user()->role == 2)
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label">Akses</label>

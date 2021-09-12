@@ -21,11 +21,13 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
+                <div class="card-header pull-right">
+                    <button class="btn btn-success" onclick="buat()">Tambah</button>
+                </div>
                 <div class="card-body">
                     <div class="alert alert-success" role="alert">
                         <b>Cara Menggunakan :</b>
                         <ul>
-                            <li>Tekan <b>F2</b> untuk membuat form baru</li>
                             <li>Tekan <b>F3</b> untuk refresh table</li>
                             <li>Tekan <b>F4</b> untuk download barcode</li>
                         </ul>
@@ -91,6 +93,10 @@
 		// 	displayValue:true,
 		// 	fontSize:20
 		// });
+
+        function buat() {
+            $('#buat').modal('show');
+        }
 
         $(document).ready(function(){
             $("#kode_barang").change(function(){

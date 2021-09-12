@@ -36,7 +36,6 @@
                                     <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
                                 @endforeach
                             </select>
-                            {{-- <input class="form-control" type="text" name="kategori" placeholder="Kategori" id="kategori"> --}}
                         </div>
                     </div>
                     <div class="form-group row">
