@@ -49,6 +49,12 @@ Route::get('symlink', function () {
     // return 'berhasil';
 });
 
+// Route::domain('{account}.localhost:8000')->group(function () {
+//     Route::get('/', 'SubdomainController@toko');
+// });
+
+Route::get('toko', 'SubdomainController@toko');
+
 
 // You can also use auth middleware to prevent unauthenticated users
 Route::group(['middleware' => 'auth'], function () {
